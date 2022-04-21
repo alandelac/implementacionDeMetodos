@@ -106,4 +106,4 @@
 ;Funcion principal para el programa, si se quieren realizar múltiples pruebas,
 ;se tiene que cambiar el nombre del documento de output o borrar en el explorador de archivos
 (define(lexerAritmetico archivo)
-  (recorre archivo "salidaLexerAritmetico.html"))
+  (recorre archivo "salidaTexto.html"))
