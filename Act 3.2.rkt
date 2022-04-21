@@ -2,16 +2,17 @@
 ;Autor: Mario Jáuregui Gómez
 ;Matricula: A00832049
 
-(define a '(("ciclo" "naranja")
-            ("condi" "morado")
-            ("dato" "default")
-            ("bool" "morado")
-            ("palabra" "rosa")
-            ("comentario" "gris")
-            ("variable" "green")
-            ("funciones" "dorado")
-            ("simb ari" "azul")
-            ("simb ex" "azul cel")))
+(define tipo-color '(("ciclo" "FF7F00")
+            ("condi" "6D01DC")
+            ("dato" "000000")
+            ("bool" "6D01DC")
+            ("palabra" "FF00DC")
+            ("comentario" "676767")
+            ("variable" "10EE00")
+            ("funciones" "EEBB00")
+            ("simb ari" "0F00E0")
+            ("simb ex" "33DFFF")))
+;ENCUENTRA EL COLOR CORRESPONDIENTE
 (define (color lst elem)
   (if (empty? lst)
       "no esta el elem"
@@ -95,7 +96,7 @@
   ;Enseña los resultados de dichos valores, además de ir contandolos
   (define cantidad (imprime lista p2))
   ;Imprime la cantidad final de tokens que fueron encontrados en el documento a leer
-  (display (string-append "<div style = \"" "color: " (color a "variable") "\"> Cantidad de Tokens:</div> ") p2)
+  (display (string-append "<div style = \"" "color: " (color tipo-color "variable") "\"> Cantidad de Tokens:</div> ") p2)
   (display cantidad p2)
   (display "</html>" p2)
   ;(display (+ x (cuenta-atomo lista)) p2)
