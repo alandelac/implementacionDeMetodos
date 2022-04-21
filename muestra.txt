@@ -1,4 +1,0 @@
-// Esto es un comentario
-int nombre_variable = 6 ;
-nombre_variable = ( otra_variable * 3 ) ;
-// Otro comentario para rematar
