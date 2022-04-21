@@ -1,0 +1,89 @@
+#lang racket
+;Autor: Mario Jáuregui Gómez
+;Matricula: A00832049
+;Función para enseñar en el documento de output el resultado
+;Tambien cuenta la cantidad de tokens que se encontraron en el documento
+(define (imprime lista p2)
+  ;Aqui se añade 1 a la cantidad de tokens que hay, además de que se van imprimiendo en el documento
+  ;todos los valores
+  (define (despliega lista p2)
+    (display (first lista) p2)
+    (display " " p2)
+    (display (second lista) p2)
+    1)
+  ;Es nuestra condición para el método recursivo, si la lista esta vacía significa que ya acabamos
+  (if (empty? lista)
+      0
+      ;Si el elemento que queremos añadir tiene una longitud mayor a dos, significa que es una lista
+      ;y por ende tendremos que llamar a la otra función, esto para que podamos imprimir los parentesis y su contenido de manera correcta
+      (if (> (length (first lista)) 2)
+          ;Llamada a funcion para parentesis
+          (+ (imprime2 (first lista) p2) (imprime (cdr lista) p2))
+          ;Llamada recursiva del resto de la lista
+          (+ (despliega (car lista) p2) (imprime (cdr lista) p2)))))
+
+;Función para imprimir el contenido de parentesis
+(define (imprime2 lista p2)
+  (define (despliega2 lista p2)
+    (display (first lista) p2)
+    (display " " p2)
+    (display (second lista) p2)
+     1)
+  (if (empty? lista)
+      0
+      ;Aqui se despliegan los dos elementos de la lista y luego se hace el cddr, ya que estamos quitando los primeros dos elementos de la lista, porque ya los imprimimos
+      (+ (despliega2 (list (first lista) (second lista)) p2) (imprime2 (cddr lista) p2))))
+;Funcion principal para leer documento de input
+(define (convierte atomo p1)
+  ;Checa si es un número y su tipo
+  (if (number? atomo)
+      (if (integer? atomo)
+          (list "\nENTERO:" atomo)
+          (list "\nREAL:"atomo))
+      ;Checa el resto de los casos
+      (cond [(equal? '* atomo)(list "\nMULTIPLICACION:" atomo)]
+            [(equal? '+ atomo)(list "\nSUMA:" atomo)]
+            [(equal? '- atomo)(list "\nRESTA:" atomo)]
+            [(equal? '= atomo)(list "\nASIGNACION:" atomo)]
+            [(equal? '/ atomo)(list "\nDIVISION:" atomo)]
+            [(equal? '^ atomo)(list "\nPOTENCIA:" atomo)]
+            ;Con la función de read line, puede guardar todo lo que se encuentra despues del simbolo
+            [(equal? '// atomo)(list "\nCOMENTARIO: //" (read-line p1))]
+            ;Con la función de recorre paren, se guarda todo lo que esta adentro del parentesis en una list of lists
+            [(list? atomo)(append(list "\nPARENTESIS QUE ABRE: " "(") (recorre-paren atomo p1))]
+            ;Su no es nada, entonces es una variable
+            [else (list "\nVARIABLE:" atomo)])))
+;Es la funcion para guardar toda la info dentro del parentesis
+;Regresa una lista donde estan todos los valores que se encuentran en los parentesis con su token respectivo
+(define (recorre-paren lista p1)
+  (if (empty? lista)
+      (list "\nPARENTESIS QUE CIERRA: " ")")
+      (append (convierte (car lista) p1) (recorre-paren(cdr lista) p1))))
+;Funcion que recorre todo el documento y va leyendo los valores
+(define (recorre-2 p1)
+  (if (eof-object? (peek-char p1))
+      '()
+      (append (list (convierte (read p1) p1)) (recorre-2 p1))))
+;Hace todas las llamadas a las funciones para poder trabajar con los dos documentos
+(define (recorre file1 file2)
+  ;Abre el documento a leer
+  (define p1 (open-input-file file1))
+  ;Crea el documento de output
+  (define p2 (open-output-file file2))
+  ;Guarda todos los valores dentro del documento
+  (define lista (recorre-2 p1))
+  ;Linea para formato de documento
+  (display "Tipo de token y Token" p2)
+  ;Enseña los resultados de dichos valores, además de ir contandolos
+  (define cantidad (imprime lista p2))
+  ;Imprime la cantidad final de tokens que fueron encontrados en el documento a leer
+  (display "\nCantidad de Tokens: " p2)
+  (display cantidad p2)
+  ;(display (+ x (cuenta-atomo lista)) p2)
+  (close-output-port p2)
+  (close-input-port p1)
+  )
+;Funcion principal para el programa, si se quieren realizar múltiples pruebas,
+;se tiene que cambiar el nombre del documento de output o borrar en el explorador de archivos
+(define(lexerAritmetico archivo)
+  (recorre archivo "salidaLexerAritmetico.txt"))
