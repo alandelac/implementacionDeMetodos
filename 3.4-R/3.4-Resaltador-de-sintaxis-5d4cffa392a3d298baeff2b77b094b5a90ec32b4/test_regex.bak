@@ -1,0 +1,38 @@
+#lang racket
+;Santiago Minga
+;Daniel Loredo
+;Test-Regex
+
+;JSReader
+(define (JSreader infile outfile)
+  (define in(open-input-file infile))
+  (define out(open-output-file outfile))
+  (define lst(read_file in))
+  ;(display lst)
+  (html_print lst out)
+  (close-input-port infile)
+  (close-output-port outfile))
+;read
+(define (read_file file)
+  (if (eof-object? (peek-char file))
+      (list)
+      (if(equal?(peek-char file) #\space)
+         (read-char file)
+         (if (string-contains? (peek-string 2 0 file) "//")
+             (append(list(append (list(read-line file)) (list" Comentario"))) (read_file file))
+             (append(identify(read-char file)) (read_file file))))))
+;html_print
+(define (html_print lst out)
+  (list))
+;identify
+(define (identify ch)
+  (list)
+  (if (equal?(regexp-match #rx "=|+|*|..." ch) #f))
+          var
+          (if (operador ch)
+          op
+          (slice ch (regexp-match-positions #rx "=|+|*|..." ch))
+          
+
+
+
