@@ -1,0 +1,59 @@
+Lenguaje escogido: C++		
+
+Lexico	|	Expresiones Regulares	|	Color en Hexadecimal
+	|				|	
+Operadores ciclicos		
+for	|	"for"			|	FF7F00
+while	|	"while"			|	FF7F00
+Tipo de dato		
+caracteres |	'(a*d*)'		|	000000
+entero	|	(+/-/lambda)d^+		|	000000
+real	|	(+/-/lambda)d^+.d^+	|	000000
+Operadores condicionales		
+if	|	"if"			|	6D01DC
+Operadores booleanos		
+>	|	">"			|	6D01DC
+==	|	"=="			|	6D01DC
+<	|	"<"			|	6D01DC
+<=	|	"<="			|	6D01DC
+>=	|	">="			|	6D01DC
+Palabras reservadas		
+int	|	"int"			|	FF00DC
+float 	|	"float"			|	FF00DC
+double	|	"double"		|	FF00DC
+long	|	"long"			|	FF00DC
+byte	|	"byte"			|	FF00DC
+long long|   "long long"		|	FF00DC
+boolean	|      "boolean"		|	FF00DC
+string	|	"string"		|	FF00DC
+swiitch	|	"switch"		|	FF00DC
+case	|	"case"			|	FF00DC
+class	|	"class"			|	FF00DC
+private	|      "private"		|	FF00DC
+break	|	"break"			|	FF00DC
+return	|	"return"		|	FF00DC
+#include|     "#include"		|	FF00DC
+public	|	"public"		|	FF00DC
+char	|	"char"			|	FF00DC
+cin	|	"cin"			|	FF00DC
+cout	|	"cout"			|	FF00DC
+endl	|	"endl"			|	FF00DC
+void	|	"void"			|	FF00DC
+using	|	"using"			|	FF00DC
+namespace|  "namespace"			|	FF00DC
+Identificadores'		
+comentario|	//(a*d*)		|	676767
+Símbolos reservados		
++	|	"+"			|	0F00E0
+-	|	"+"			|	0F00E1
+*	|	"*"			|	0F00E2
+/	|	"/"			|	0F00E3
+=	|	"="			|	0F00E4
+:	|	":"			|	33DFFF
+;	|	";"			|	33DFFF
+(	|	"("			|	33DFFF
+)	|	")"			|	33DFFF
+{	|	"{"			|	33DFFF
+}	|	"}"			|	33DFFF
+[	|	"["			|	33DFFF
+]	|	"]"			|	33DFFF
